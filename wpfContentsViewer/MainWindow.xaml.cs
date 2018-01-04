@@ -42,6 +42,7 @@ namespace wpfContentsViewer
             programs = new ProgramCollection(programService.GetAll());
 
             dgridTvRecord.ItemsSource = records.collecion;
+            dgridProgram.ItemsSource = programs.collecion;
         }
 
         private void OnTabButtonClick(object sender, RoutedEventArgs e)
@@ -65,6 +66,12 @@ namespace wpfContentsViewer
         {
             records.SetSearchText(txtSearch.Text);
             records.Execute();
+        }
+
+        private void txtSearchProgram_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            programs.SetSearchText(txtSearchProgram.Text);
+            programs.Execute();
         }
     }
 }

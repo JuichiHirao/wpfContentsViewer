@@ -44,7 +44,7 @@ namespace wpfContentsViewer.dao
             {
                 Program data = new Program();
 
-                data.ChannelId = DbExportCommon.GetDbString(reader, 0);
+                data.ChannelId = Convert.ToString(DbExportCommon.GetDbInt(reader, 0));
                 data.Name = DbExportCommon.GetDbString(reader, 1);
                 data.AbbreviationName = DbExportCommon.GetDbString(reader, 2);
                 data.RelationId = DbExportCommon.GetDbString(reader, 3);

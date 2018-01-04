@@ -51,11 +51,69 @@
                 <ToggleButton Content="X" Width="50" Height="50" Margin="5,5,5,5" FontSize="36" Click="OnTabButtonClick" />
             </WrapPanel>
             <Grid Name="lgridTvRecord" Grid.Column="1" Grid.Row="1" Panel.ZIndex="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <TextBox Name="txtSearchProgram" TextChanged="txtSearchProgram_TextChanged" />
+                <DataGrid HeadersVisibility="Row"  Name="dgridProgram" AutoGenerateColumns="False"
+                          Height="Auto" Margin="5,5,5,5" Panel.ZIndex="1" Grid.Row="1" Opacity="0.6"
+                          HorizontalAlignment="Left" VerticalAlignment="Top" GridLinesVisibility="Horizontal"
+                          CanUserAddRows="False" CanUserDeleteRows="False"
+                          SizeChanged="dgridTvRecord_SizeChanged" >
+                    <!--SelectionChanged="dgridMovieContents_SelectionChanged"
+                          MouseDoubleClick="dgridMovieContents_MouseDoubleClick"
+                          ContextMenuOpening="dgridMovieContents_ContextMenuOpening">
+                    <DataGrid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Name="menuitemAddTagContents" Header="タグ追加" Click="menuitemAddTagContents_Click" />
+                            <MenuItem Name="menuitemAddSelectedDataAdd" Header="選択データの追加" Click="menuitemAddSelectedDataAdd_Click" />
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
+                    -->
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <StackPanel VerticalAlignment="Center">
+                                            <TextBlock Text="{Binding Path=ChannelId}" TextAlignment="Center" FontSize="24" />
+                                        </StackPanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Name">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="150" />
+                                            <ColumnDefinition Width="80" />
+                                            <ColumnDefinition />
+                                            <ColumnDefinition Width="150" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="{Binding Path=Name}" FontSize="18" />
+                                        <TextBlock Text="{Binding Path=OnAirStart, StringFormat='yyyy/MM/dd'}" FontSize="16" Grid.Row="1" />
+                                        <TextBlock Text="{Binding Path=OnAirEnd, StringFormat='yyyy/MM/dd'}" FontSize="16" Grid.Column="1" Grid.Row="1" />
+                                        <TextBlock Text="{Binding Path=Detail}" TextWrapping="Wrap" TextAlignment="Left" FontSize="12" Margin="5,5,5,5" Grid.Column="2" Grid.Row="2" />
+                                    </Grid>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
                 <DataGrid HeadersVisibility="Row"  Name="dgridTvRecord" AutoGenerateColumns="False"
                           Height="Auto" Margin="5,5,5,5" Panel.ZIndex="1" Opacity="0.6"
                           HorizontalAlignment="Left" VerticalAlignment="Top" GridLinesVisibility="Horizontal"
                           CanUserAddRows="False" CanUserDeleteRows="False"
-                          Grid.Column="1" Grid.Row="1"
+                          Grid.Row="2"
                           SizeChanged="dgridTvRecord_SizeChanged" >
                     <!--SelectionChanged="dgridMovieContents_SelectionChanged"
                           MouseDoubleClick="dgridMovieContents_MouseDoubleClick"
@@ -124,9 +182,6 @@
                         </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
-                <Grid Name="lgridImagePackage" Grid.ColumnSpan="2" Panel.ZIndex="0">
-                    <Image Name="imagePackage" Stretch="Uniform" Panel.ZIndex="0" />
-                </Grid>
             </Grid>
         </Grid>
     </DockPanel>

@@ -22,14 +22,12 @@ namespace wpfContentsViewer.collection
             listContents = myProgramList;
             collecion = CollectionViewSource.GetDefaultView(listContents);
             collecion.SortDescriptions.Clear();
-            collecion.SortDescriptions.Add(new SortDescription("Id", ListSortDirection.Descending));
+            collecion.SortDescriptions.Add(new SortDescription("ChannelId", ListSortDirection.Ascending));
         }
 
         public void SetSearchText(string mySearchText)
         {
             string[] words = mySearchText.Split(' ');
-
-            int SearchDisk = -1;
 
             foreach (string w in words)
             {
@@ -74,7 +72,7 @@ namespace wpfContentsViewer.collection
 
             collecion.Filter = delegate (object o)
             {
-                Record data = o as Record;
+                Program data = o as Program;
                 if (IsFilterFreeWords || IsFilterProgramIds)
                 {
                     if (IsFilterFreeWords)
@@ -82,7 +80,7 @@ namespace wpfContentsViewer.collection
                         bool r = false;
                         foreach (string s in SearchFreeWords)
                         {
-                            if (data.Detail.IndexOf(s) >= 0)
+                            if (data.Detail.IndexOf(s) >= 0 || data.Name.IndexOf(s) >= 0)
                                 r = true;
                         }
                         if (r == false)
@@ -92,9 +90,9 @@ namespace wpfContentsViewer.collection
                     {
                         bool r = false;
                         int pid = 0;
-                        if (data.ProgramId != null && data.ProgramId.Length > 0)
+                        if (data.ChannelId != null && data.ChannelId.Length > 0)
                         {
-                            pid = Convert.ToInt32(data.ProgramId);
+                            pid = Convert.ToInt32(data.ChannelId);
                         }
                         foreach (int id in SearchProgramIds)
                         {
