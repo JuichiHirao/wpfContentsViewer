@@ -13,7 +13,7 @@ namespace wpfContentsViewer.data
             Remark = "";
         }
 
-        public string Id { get; set; }
+        public string ChannelId { get; set; }
 
         public string Name { get; set; }
 
@@ -58,5 +58,10 @@ namespace wpfContentsViewer.data
                 Remark = Remark + "    Error : " + myDate;
             }
         }
+
+        public DateTime CreateDate { get; set; }
+
+        public DateTime UpdateDate { get; set; }
+
     }
 }

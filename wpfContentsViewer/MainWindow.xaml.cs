@@ -24,6 +24,7 @@ namespace wpfContentsViewer
     public partial class MainWindow : Window
     {
         RecordCollection records;
+        ProgramCollection programs;
 
         public MainWindow()
         {
@@ -35,6 +36,10 @@ namespace wpfContentsViewer
             RecordService recordService = new RecordService();
 
             records = new RecordCollection(recordService.GetAll());
+
+            ProgramService programService = new ProgramService();
+
+            programs = new ProgramCollection(programService.GetAll());
 
             dgridTvRecord.ItemsSource = records.collecion;
         }
