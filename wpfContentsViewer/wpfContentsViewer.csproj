@@ -57,13 +57,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="collection\ChannelCollection.cs" />
     <Compile Include="collection\ProgramCollection.cs" />
     <Compile Include="collection\RecordCollection.cs" />
     <Compile Include="common\DbExportCommon.cs" />
+    <Compile Include="dao\ChannelDao.cs" />
     <Compile Include="dao\ProgramDao.cs" />
     <Compile Include="dao\RecordDao.cs" />
+    <Compile Include="data\ChannelData.cs" />
     <Compile Include="data\Program.cs" />
     <Compile Include="data\Record.cs" />
+    <Compile Include="service\ChannelService.cs" />
     <Compile Include="service\ProgramService.cs" />
     <Compile Include="service\RecordService.cs" />
     <Page Include="MainWindow.xaml">

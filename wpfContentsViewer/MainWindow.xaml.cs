@@ -25,6 +25,7 @@ namespace wpfContentsViewer
     {
         RecordCollection records;
         ProgramCollection programs;
+        ChannelCollection channels;
 
         public MainWindow()
         {
@@ -43,6 +44,9 @@ namespace wpfContentsViewer
 
             dgridTvRecord.ItemsSource = records.collecion;
             dgridProgram.ItemsSource = programs.collecion;
+
+            ChannelService channelService = new ChannelService();
+            channels = new ChannelCollection(channelService.GetAll());
         }
 
         private void OnTabButtonClick(object sender, RoutedEventArgs e)
