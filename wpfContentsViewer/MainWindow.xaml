@@ -60,8 +60,7 @@
                 <DataGrid HeadersVisibility="Row"  Name="dgridProgram" AutoGenerateColumns="False"
                           Height="Auto" Margin="5,5,5,5" Panel.ZIndex="1" Grid.Row="1" Opacity="0.6"
                           HorizontalAlignment="Left" VerticalAlignment="Top" GridLinesVisibility="Horizontal"
-                          CanUserAddRows="False" CanUserDeleteRows="False"
-                          SizeChanged="dgridTvRecord_SizeChanged" >
+                          CanUserAddRows="False" CanUserDeleteRows="False">
                     <!--SelectionChanged="dgridMovieContents_SelectionChanged"
                           MouseDoubleClick="dgridMovieContents_MouseDoubleClick"
                           ContextMenuOpening="dgridMovieContents_ContextMenuOpening">
@@ -99,7 +98,7 @@
                                             <ColumnDefinition />
                                             <ColumnDefinition Width="150" />
                                         </Grid.ColumnDefinitions>
-                                        <TextBlock Text="{Binding Path=Name}" FontSize="18" />
+                                        <TextBlock Text="{Binding Path=Name}" FontSize="18" Grid.ColumnSpan="4" />
                                         <TextBlock Text="{Binding Path=OnAirStart, StringFormat='yyyy/MM/dd'}" FontSize="16" Grid.Row="1" />
                                         <TextBlock Text="{Binding Path=OnAirEnd, StringFormat='yyyy/MM/dd'}" FontSize="16" Grid.Column="1" Grid.Row="1" />
                                         <TextBlock Text="{Binding Path=Detail}" TextWrapping="Wrap" TextAlignment="Left" FontSize="12" Margin="5,5,5,5" Grid.Column="2" Grid.Row="2" />
