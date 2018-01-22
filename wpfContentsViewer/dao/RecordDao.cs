@@ -27,7 +27,10 @@ namespace wpfContentsViewer.dao
         {
             List<Record> listRecord = new List<Record>();
 
-            string sql = "SELECT ID, DISK, SEQ, STATUS, ON_AIR_DATE, PROGRAM_ID, DURATION, DETAIL, CREATE_DATE, UPDATE_DATE FROM RECORD ";
+            string sql = "SELECT R.ID, R.DISK, R.SEQ, R.STATUS, R.ON_AIR_DATE, R.PROGRAM_ID, R.DURATION, R.DETAIL, R.CREATE_DATE, R.UPDATE_DATE, P.NAME "
+                        + "FROM RECORD R "
+                        + "  LEFT JOIN PROGRAM P "
+                        + "    ON R.PROGRAM_ID = P.CHANNEL_ID ";
 
             dbcon.openConnection();
 
@@ -56,6 +59,7 @@ namespace wpfContentsViewer.dao
                 data.Detail = DbExportCommon.GetDbString(reader, 7);
                 data.CreateDate = DbExportCommon.GetDbDateTime(reader, 8);
                 data.UpdateDate = DbExportCommon.GetDbDateTime(reader, 9);
+                data.ProgramName = DbExportCommon.GetDbString(reader, 10);
 
                 listRecord.Add(data);
             }

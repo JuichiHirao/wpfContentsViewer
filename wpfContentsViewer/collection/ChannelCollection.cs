@@ -21,5 +21,17 @@ namespace wpfContentsViewer.collection
             collecion.SortDescriptions.Clear();
             collecion.SortDescriptions.Add(new SortDescription("Channel", ListSortDirection.Ascending));
         }
+
+        public ChannelData GetByChannel(int myId)
+        {
+            foreach (ChannelData c in listContents)
+            {
+                if (c.Channel == myId)
+                    return c;
+            }
+
+            return null;
+        }
+
     }
 }

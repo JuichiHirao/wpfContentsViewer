@@ -23,9 +23,28 @@ namespace wpfContentsViewer.data
 
         public string Channel { get; set; }
 
-        public string ProgramId { get; set; }
+        private string _ProgramId;
+        public string ProgramId
+        {
+            get
+            {
+                return _ProgramId;
+            }
+            set
+            {
+                int p = 0;
+                try
+                {
+                    p = Convert.ToInt32(value);
+                }
+                catch(Exception)
+                {
+                }
+                _ProgramId = p.ToString("000000");
+            }
+        }
 
-        public string ProdugramName { get; set; }
+        public string ProgramName { get; set; }
 
         public string ProgramDisplay { get; set; }
 

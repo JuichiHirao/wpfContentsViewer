@@ -13,6 +13,17 @@ namespace wpfContentsViewer.data
             Remark = "";
         }
 
+        public int GetChannel()
+        {
+            if (ChannelId.Length > 0)
+            {
+                int cid = Convert.ToInt32(ChannelId);
+                return cid / 1000;
+            }
+
+            return -1;
+        }
+
         public string ChannelId { get; set; }
 
         public string Name { get; set; }

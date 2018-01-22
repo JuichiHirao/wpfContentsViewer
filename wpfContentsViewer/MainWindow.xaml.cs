@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using wpfContentsViewer.collection;
 using wpfContentsViewer.common;
+using wpfContentsViewer.data;
 using wpfContentsViewer.service;
 
 namespace wpfContentsViewer
@@ -76,6 +77,47 @@ namespace wpfContentsViewer
         {
             programs.SetSearchText(txtSearchProgram.Text);
             programs.Execute();
+        }
+
+        private void dgridTvRecord_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dgridTvRecord.SelectedItems.Count == 1)
+            {
+                Record r = (Record)dgridTvRecord.SelectedItem;
+                
+                if (r.ProgramId.Length > 0)
+                {
+                    Program p = programs.GetById(r.ProgramId);
+                    if (p == null)
+                        txtStatusBar.Text = "対象の番組が見つかりません";
+                }
+
+                txtFileGenDetail.Text = r.Detail;
+            }
+        }
+
+        private void OnFileGenerateExecute(object sender, RoutedEventArgs e)
+        {
+            Button btn = sender as Button;
+
+            Record record = (Record)dgridTvRecord.SelectedItem;
+            Program program = null;
+
+            if (record.ProgramId.Length > 0)
+                program = programs.GetById(record.ProgramId);
+
+            if (program == null)
+            {
+                txtStatusBar.Text = "対象の番組が見つかりません";
+                return;
+            }
+
+            ChannelData channel = channels.GetByChannel(program.GetChannel());
+
+            if (btn.Content.Equals("P生成"))
+                txtStatusBar.Text = FilenameGenerate.GetFilenameProgram(channel, program, record, txtFileGenTargetName.Text, txtFileGenDuration.Text, txtFileGenProgramPrefix.Text);
+            else
+                txtStatusBar.Text = FilenameGenerate.GetFilename(channel, program, record, txtFileGenTargetName.Text, txtFileGenDuration.Text);
         }
     }
 }

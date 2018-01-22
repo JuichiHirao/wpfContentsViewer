@@ -61,6 +61,7 @@
     <Compile Include="collection\ProgramCollection.cs" />
     <Compile Include="collection\RecordCollection.cs" />
     <Compile Include="common\DbExportCommon.cs" />
+    <Compile Include="common\FilenameGenerate.cs" />
     <Compile Include="dao\ChannelDao.cs" />
     <Compile Include="dao\ProgramDao.cs" />
     <Compile Include="dao\RecordDao.cs" />

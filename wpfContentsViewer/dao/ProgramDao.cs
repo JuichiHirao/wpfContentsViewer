@@ -25,7 +25,8 @@ namespace wpfContentsViewer.dao
         {
             List<Program> listProgram = new List<Program>();
 
-            string sql = "SELECT CHANNEL_ID, NAME, ABBREVIATION_NAME, RELATION_ID, ON_AIR_START, ON_AIR_END, DETAIL, REMARK, CREATE_DATE, UPDATE_DATE FROM PROGRAM ";
+            string sql = "SELECT CHANNEL_ID, NAME, ABBREVIATION_NAME, RELATION_ID, ON_AIR_START, ON_AIR_END, DETAIL, REMARK, CREATE_DATE, UPDATE_DATE "
+                            + " FROM PROGRAM ";
 
             dbcon.openConnection();
 

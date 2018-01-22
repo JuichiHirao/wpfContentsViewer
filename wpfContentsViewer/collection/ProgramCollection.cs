@@ -24,6 +24,19 @@ namespace wpfContentsViewer.collection
             collecion.SortDescriptions.Add(new SortDescription("ChannelId", ListSortDirection.Ascending));
         }
 
+        public Program GetById(string myId)
+        {
+            int pid = Convert.ToInt32(myId);
+            string strPid = Convert.ToString(pid);
+            foreach (Program p in listContents)
+            {
+                if (p.ChannelId == strPid)
+                    return p;
+            }
+
+            return null;
+        }
+
         public void SetSearchText(string mySearchText)
         {
             SearchFreeWords = null;
