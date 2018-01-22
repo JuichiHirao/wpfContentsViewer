@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,7 @@ namespace wpfContentsViewer.collection
 
         List<int> SearchProgramIds = null;
         List<string> SearchFreeWords = null;
+        string SearchChannel = null;
 
         public RecordCollection(List<Record> myRecordList)
         {
@@ -30,8 +32,6 @@ namespace wpfContentsViewer.collection
         {
             string[] words = mySearchText.Split(' ');
 
-            int SearchDisk = -1;
-
             foreach(string w in words)
             {
                 if (w.IndexOf("P") == 0)
@@ -41,19 +41,21 @@ namespace wpfContentsViewer.collection
 
                     if (ids != null && ids.Length > 0)
                     {
-                        foreach(string i in ids)
+                        foreach (string i in ids)
                         {
                             try
                             {
                                 SearchProgramIds.Add(Convert.ToInt32(i));
                             }
-                            catch(Exception)
+                            catch (Exception)
                             {
 
                             }
                         }
                     }
                 }
+                else if (w.IndexOf("C") == 0)
+                    SearchChannel = w.Substring(1);
                 else
                 {
                     if (SearchFreeWords == null)
@@ -76,7 +78,19 @@ namespace wpfContentsViewer.collection
             collecion.Filter = delegate (object o)
             {
                 Record data = o as Record;
-                if (IsFilterFreeWords || IsFilterProgramIds)
+                if (SearchChannel != null && SearchChannel.Length > 0)
+                {
+                    if (data.ProgramId != null && data.ProgramId.Length > 0)
+                    {
+                        if (data.ProgramId.IndexOf(SearchChannel) == 0)
+                            return true;
+                        else
+                            return false;
+                    }
+                    else
+                        return false;
+                }
+                else if (IsFilterFreeWords || IsFilterProgramIds)
                 {
                     if (IsFilterFreeWords)
                     {
