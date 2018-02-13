@@ -117,7 +117,12 @@ namespace wpfContentsViewer
             if (btn.Content.Equals("P生成"))
                 txtStatusBar.Text = FilenameGenerate.GetFilenameProgram(channel, program, record, txtFileGenTargetName.Text, txtFileGenDuration.Text, txtFileGenProgramPrefix.Text);
             else
-                txtStatusBar.Text = FilenameGenerate.GetFilename(channel, program, record, txtFileGenTargetName.Text, txtFileGenDuration.Text);
+                txtStatusBar.Text = FilenameGenerate.GetFilename(channel, program, record, txtFileGenTargetName.Text, txtFileGenDuration.Text, txtFileGenPath.Text, txtFileGenExtension.Text);
+        }
+
+        private void btnFileGenClipboardCopy_Click(object sender, RoutedEventArgs e)
+        {
+            Clipboard.SetText(txtStatusBar.Text);
         }
     }
 }

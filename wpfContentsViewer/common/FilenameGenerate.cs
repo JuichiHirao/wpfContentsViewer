@@ -10,7 +10,7 @@ namespace wpfContentsViewer.common
 {
     class FilenameGenerate
     {
-        public static string GetFilename(ChannelData myChannel, Program myProgram, Record myRecord, string myTarget, string myDuration)
+        public static string GetFilename(ChannelData myChannel, Program myProgram, Record myRecord, string myTarget, string myDuration, string myPath, string myExtension)
         {
             string message = "";
             string filename = "";
@@ -47,6 +47,14 @@ namespace wpfContentsViewer.common
                 {
                     filename = "" + "{" + myRecord.OnAirDate.ToString("yyyyMMdd") + "}" + " － " + "（" + name + "[" + myChannel.RipId + " " + FilenameGenerate.GetDuration(myDuration) + "]）";
                 }
+            }
+
+            if (filename.Length > 0)
+            {
+                if (myExtension != null && myExtension.Length > 0)
+                    filename = filename + "." + myExtension;
+                if (myPath != null && myPath.Length > 0)
+                    filename = System.IO.Path.Combine(myPath, filename);
             }
 
             return filename;
